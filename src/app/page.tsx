@@ -1,94 +1,175 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false);
+  const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const projects = [
+    { title: "Payment Processor", desc: "Payment processor for Discord communities", tech: "React, Node.js, Next.js" },
+    { title: "Stock Options Flow Bot", desc: "Live options flow Discord bot", tech: "Python" },
+    { title: "Engagement Bot", desc: "Discord bot to automate communities", tech: "Discord.js" },
+  ];
+
+  const skills = [
+    "React", "Node.js", "Next.js", "Python", "Discord.js", 
+    "TypeScript", "JavaScript", "Git", "API Development", "UI/UX"
+  ];
+
+  const contacts = [
+    { name: "Twitter", link: "https://x.com/bbusickio" },
+    { name: "GitHub", link: "https://github.com/buzieks" },
+    { name: "LinkedIn", link: "https://www.linkedin.com/in/brandon-busickio-2527b4323/" },
+    { name: "Email", link: "mailto:me@brandonbusickio.com" },
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+    <main className="flex min-h-screen flex-col items-center justify-between p-4 sm:p-8 bg-gradient-to-br from-gray-900 via-indigo-900 to-black text-white">
+      {/* Header/Navbar */}
+      <div className="w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-16 gap-4 sm:gap-0">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-pulse" />
+          <h1 className="text-xl sm:text-2xl font-bold font-mono">Brandon Busickio</h1>
+        </div>
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 font-mono text-sm">
+          <button
+            onClick={() => setIsProjectsModalOpen(true)}
+            className="hover:text-indigo-400 transition-colors"
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => setIsSkillsModalOpen(true)}
+            className="hover:text-indigo-400 transition-colors"
+          >
+            Skills
+          </button>
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="hover:text-indigo-400 transition-colors"
+          >
+            Contact
+          </button>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative flex flex-col items-center text-center max-w-3xl px-4">
+        <div className="absolute inset-0 -z-10 bg-gradient-radial from-indigo-500/20 to-transparent w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] blur-3xl animate-pulse" />
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 animate-fade-in">
+          Brandon Busickio
+        </h1>
+        <p className="text-lg sm:text-xl md:text-2xl mb-8 opacity-80 font-mono">
+          Software Developer | Problem Solver | Code Architect
         </p>
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <button
+            onClick={() => setIsProjectsModalOpen(true)}
+            className="px-6 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all hover:scale-105 border border-indigo-400/50 w-full sm:w-auto"
+          >
+            View Projects
+          </button>
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="px-6 py-3 bg-transparent rounded-lg hover:bg-purple-900/50 transition-all hover:scale-105 border border-purple-400/50 w-full sm:w-auto"
+          >
+            Get in Touch
+          </button>
+        </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Projects Modal */}
+      {isProjectsModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
+          <div className="bg-gray-800/90 p-6 sm:p-8 rounded-xl border border-indigo-500/50 w-11/12 sm:w-[600px] max-h-[80vh] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+              My Projects
+            </h2>
+            <div className="space-y-4">
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-gray-700/50 rounded-lg hover:bg-indigo-600/30 transition-colors"
+                >
+                  <h3 className="text-lg font-semibold text-indigo-400">{project.title}</h3>
+                  <p className="text-sm opacity-70">{project.desc}</p>
+                  <p className="text-xs font-mono text-purple-400 mt-2">{project.tech}</p>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => setIsProjectsModalOpen(false)}
+              className="mt-6 w-full px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all border border-indigo-400/50"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* Skills Modal */}
+      {isSkillsModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
+          <div className="bg-gray-800/90 p-6 sm:p-8 rounded-xl border border-indigo-500/50 w-11/12 sm:w-96 max-h-[80vh] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+              My Skills
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              {skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="p-3 bg-gray-700/50 rounded-lg text-center text-sm font-mono hover:bg-indigo-600/30 transition-colors"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => setIsSkillsModalOpen(false)}
+              className="mt-6 w-full px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all border border-indigo-400/50"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      {/* Contact Modal */}
+      {isContactModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
+          <div className="bg-gray-800/90 p-6 sm:p-8 rounded-xl border border-indigo-500/50 w-11/12 sm:w-96 max-h-[80vh] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+              Contact Me
+            </h2>
+            <div className="space-y-4">
+              {contacts.map((contact, index) => (
+                <Link
+                  key={index}
+                  href={contact.link}
+                  target="_blank"
+                  className="block p-3 bg-gray-700/50 rounded-lg text-center text-sm font-mono hover:bg-indigo-600/30 transition-colors"
+                >
+                  {contact.name}
+                </Link>
+              ))}
+            </div>
+            <button
+              onClick={() => setIsContactModalOpen(false)}
+              className="mt-6 w-full px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all border border-indigo-400/50"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      {/* Footer */}
+      <div className="text-center text-xs sm:text-sm opacity-60 font-mono">
+        <p>© 2025 Brandon Busickio</p>
       </div>
     </main>
   );
