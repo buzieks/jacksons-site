@@ -5,15 +5,30 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
-  const [isProjectsModalOpen, setIsCommunityModalOpen] = useState(false);
+  const [isCommunityModalOpen, setIsCommunityModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const projects = [
-    { title: "Payment Processor", desc: "Payment processor for Discord communities", tech: "React, Node.js, Next.js" },
-    { title: "Stock Options Flow Bot", desc: "Live options flow Discord bot", tech: "Python" },
-    { title: "Engagement Bot", desc: "Discord bot to automate communities", tech: "Discord.js" },
-  ];
+  const communities = [
+  { 
+    title: "OptionsSwing", 
+    desc: "Stock and Options Trading", 
+    src: "/communities/optionsswing",
+    img: "/images/os.png"
+  },
+  { 
+    title: "Pure Profits", 
+    desc: "Reselling and more", 
+    src: "/communities/pure-profits",
+    img: "/images/pure.png"
+  },
+  { 
+    title: "House of Content", 
+    desc: "Tiktok Shop $$", 
+    src: "/communities/house-of-content",
+    img: "/images/hoc.png"
+  },
+];
 
   const skills = [
     "React", "Node.js", "Next.js", "Python", "Discord.js", 
@@ -40,7 +55,7 @@ export default function Home() {
             onClick={() => setIsCommunityModalOpen(true)}
             className="hover:text-indigo-400 transition-colors"
           >
-            Projects
+            Communities
           </button>
           <button
             onClick={() => setIsSkillsModalOpen(true)}
@@ -83,22 +98,33 @@ export default function Home() {
       </div>
 
       {/* Communities Modal */}
-      {isProjectsModalOpen && (
+      {isCommunityModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
           <div className="bg-gray-800/90 p-6 sm:p-8 rounded-xl border border-indigo-500/50 w-11/12 sm:w-[600px] max-h-[80vh] overflow-y-auto">
             <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
               My Communities
             </h2>
             <div className="space-y-4">
-              {projects.map((project, index) => (
-                <div
+              {communities.map((community, index) => (
+                <Link
                   key={index}
-                  className="p-4 bg-gray-700/50 rounded-lg hover:bg-indigo-600/30 transition-colors"
+                  href={community.src}
+                  className="flex items-center p-4 bg-gray-700/50 rounded-lg hover:bg-indigo-600/30 transition-colors group"
                 >
-                  <h3 className="text-lg font-semibold text-indigo-400">{project.title}</h3>
-                  <p className="text-sm opacity-70">{project.desc}</p>
-                  <p className="text-xs font-mono text-purple-400 mt-2">{project.tech}</p>
-                </div>
+                  <div className="flex-shrink-0 mr-4">
+                    <Image
+                      src={community.img}
+                      alt={`${community.title} logo`}
+                      width={48}
+                      height={48}
+                      className="rounded-full object-cover group-hover:scale-110 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-indigo-400">{community.title}</h3>
+                    <p className="text-sm opacity-70">{community.desc}</p>
+                  </div>
+                </Link>
               ))}
             </div>
             <button
