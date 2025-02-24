@@ -1,6 +1,7 @@
 {
   "name": "main",
   "main": ".open-next/worker.js",
+  "account_id":"de48e9b251d69dcc79f41f374b6214fd",
   "compatibility_date": "2024-11-01",
   "compatibility_flags": ["nodejs_compat"],
   "minify": true,

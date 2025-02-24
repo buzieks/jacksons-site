@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
-  const [isProjectsModalOpen, setIsProjectsModalOpen] = useState(false);
+  const [isProjectsModalOpen, setIsCommunityModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
@@ -33,11 +33,11 @@ export default function Home() {
       <div className="w-full max-w-5xl flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-16 gap-4 sm:gap-0">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-pulse" />
-          <h1 className="text-xl sm:text-2xl font-bold font-mono">Brandon Busickio</h1>
+          <h1 className="text-xl sm:text-2xl font-bold font-mono">Jackson Fairbanks</h1>
         </div>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 font-mono text-sm">
           <button
-            onClick={() => setIsProjectsModalOpen(true)}
+            onClick={() => setIsCommunityModalOpen(true)}
             className="hover:text-indigo-400 transition-colors"
           >
             Projects
@@ -61,17 +61,17 @@ export default function Home() {
       <div className="relative flex flex-col items-center text-center max-w-3xl px-4">
         <div className="absolute inset-0 -z-10 bg-gradient-radial from-indigo-500/20 to-transparent w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] blur-3xl animate-pulse" />
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 animate-fade-in">
-          Brandon Busickio
+          Jackson Fairbanks
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl mb-8 opacity-80 font-mono">
-          Software Developer | Problem Solver | Code Architect
+          Options Trader | Nasdaq Founder $ASST | Digital Community Builder
         </p>
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <button
-            onClick={() => setIsProjectsModalOpen(true)}
+            onClick={() => setIsCommunityModalOpen(true)}
             className="px-6 py-3 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all hover:scale-105 border border-indigo-400/50 w-full sm:w-auto"
           >
-            View Projects
+            View Communities
           </button>
           <button
             onClick={() => setIsContactModalOpen(true)}
@@ -82,12 +82,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Projects Modal */}
+      {/* Communities Modal */}
       {isProjectsModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm">
           <div className="bg-gray-800/90 p-6 sm:p-8 rounded-xl border border-indigo-500/50 w-11/12 sm:w-[600px] max-h-[80vh] overflow-y-auto">
             <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-              My Projects
+              My Communities
             </h2>
             <div className="space-y-4">
               {projects.map((project, index) => (
@@ -102,7 +102,7 @@ export default function Home() {
               ))}
             </div>
             <button
-              onClick={() => setIsProjectsModalOpen(false)}
+              onClick={() => setIsCommunityModalOpen(false)}
               className="mt-6 w-full px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all border border-indigo-400/50"
             >
               Close
@@ -169,7 +169,7 @@ export default function Home() {
 
       {/* Footer */}
       <div className="text-center text-xs sm:text-sm opacity-60 font-mono">
-        <p>© 2025 Brandon Busickio</p>
+        <p>© 2025 Jackson Fairbanks</p>
       </div>
     </main>
   );
